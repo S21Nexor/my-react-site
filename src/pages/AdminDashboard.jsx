@@ -192,7 +192,7 @@ export default function AdminDashboard() {
         setLoading(false);
       },
       (err) => {
-        console.error("Firestore error:", err);
+        console.error("Firestore onSnapshot error:", err.code, err.message);
         setLoading(false);
       }
     );

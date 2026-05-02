@@ -124,7 +124,9 @@ const styles = {
   },
 };
 
+// Saudi phone numbers: must start with 05 followed by exactly 8 digits (10 digits total)
 const PHONE_REGEX = /^05\d{8}$/;
+// Saudi National ID: exactly 10 digits
 const NATIONAL_ID_REGEX = /^\d{10}$/;
 
 function validate(form) {
@@ -189,8 +191,14 @@ export default function PublicRegistration() {
       });
       setSubmitted(true);
     } catch (err) {
-      setSubmitError("حدث خطأ أثناء الإرسال. يرجى المحاولة مرة أخرى.");
-      console.error(err);
+      if (err.code === "permission-denied") {
+        setSubmitError("لا توجد صلاحية لإرسال الطلب. يرجى التواصل مع الدعم.");
+      } else if (err.code === "unavailable" || err.message?.includes("network")) {
+        setSubmitError("تعذّر الاتصال بالخادم. يرجى التحقق من اتصالك بالإنترنت والمحاولة مرة أخرى.");
+      } else {
+        setSubmitError("حدث خطأ أثناء الإرسال. يرجى المحاولة مرة أخرى.");
+      }
+      console.error("Firestore addDoc error:", err.code, err.message);
     } finally {
       setSubmitting(false);
     }
