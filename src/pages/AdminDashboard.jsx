@@ -200,8 +200,13 @@ export default function AdminDashboard() {
   }, []);
 
   async function handleLogout() {
-    await signOut(auth);
-    navigate("/admin");
+    try {
+      await signOut(auth);
+      navigate("/admin");
+    } catch (err) {
+      console.error("Logout failed:", err);
+      alert("حدث خطأ أثناء تسجيل الخروج. يرجى المحاولة مرة أخرى.");
+    }
   }
 
   return (
