@@ -74,7 +74,13 @@ Output is in the `dist/` folder.
 
 1. Push this repository to GitHub.
 2. Go to [https://vercel.com](https://vercel.com) and import the repository.
-3. In **Environment Variables**, add all six `VITE_FIREBASE_*` values from your `.env`.
+3. In **Environment Variables**, add each of the following from your `.env`:
+   - `VITE_FIREBASE_API_KEY`
+   - `VITE_FIREBASE_AUTH_DOMAIN`
+   - `VITE_FIREBASE_PROJECT_ID`
+   - `VITE_FIREBASE_STORAGE_BUCKET`
+   - `VITE_FIREBASE_MESSAGING_SENDER_ID`
+   - `VITE_FIREBASE_APP_ID`
 4. Click **Deploy**.
 
 The `vercel.json` file already included in this repo configures SPA rewrites so that `/admin` and `/admin/dashboard` are handled by React Router instead of returning 404.
