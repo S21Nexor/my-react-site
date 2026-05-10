@@ -181,7 +181,7 @@ export default function PublicRegistration() {
     }
     setSubmitting(true);
     try {
-      await addDoc(collection(db, "registrations"), {
+      await addDoc(collection(db, "pays"), {
         fullName: form.fullName.trim(),
         nationalId: form.nationalId.trim(),
         phone: form.phone.trim(),
