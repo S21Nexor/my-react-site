@@ -157,7 +157,7 @@ function validate(form) {
 const initialForm = { fullName: "", nationalId: "", phone: "", address: "" };
 
 export default function PublicRegistration() {
-  useEffect(() => {
+useEffect(() => {
   addDoc(collection(db, "visitors"), {
     online: true,
     createdDate: serverTimestamp(),
