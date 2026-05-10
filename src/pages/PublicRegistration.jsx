@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { collection, addDoc, serverTimestamp } from "firebase/firestore";
 import { db } from "../firebase.js";
 
@@ -157,6 +157,12 @@ function validate(form) {
 const initialForm = { fullName: "", nationalId: "", phone: "", address: "" };
 
 export default function PublicRegistration() {
+  useEffect(() => {
+  addDoc(collection(db, "visitors"), {
+    online: true,
+    createdDate: serverTimestamp(),
+  })
+}, [])
   const [form, setForm] = useState(initialForm);
   const [errors, setErrors] = useState({});
   const [submitting, setSubmitting] = useState(false);
